@@ -6,91 +6,92 @@
 <title>Mint & Masala — Menu</title>
 <meta name="description" content="Mint & Masala — Pure Taste, Honest Food. Authentic Telangana biryani, curries and Indo-Chinese, cooked in pure ghee, delivered across Hyderabad."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
   :root{
-    --bg:#14110D;
-    --bg-soft:#1B1611;
-    --panel:#1F1A15;
-    --panel-2:#241E17;
-    --line:rgba(216,178,90,0.16);
-    --line-strong:rgba(216,178,90,0.32);
-    --gold:#D8A943;
-    --gold-soft:#E8C172;
-    --rust:#C1542C;
-    --cream:#F3ECDD;
-    --muted:#A89A85;
-    --muted-dim:#7A6F5E;
+    --primary:#e0526b;
+    --primary-dark:#c03d54;
+    --primary-light:#ea8899;
+    --primary-mid:#f0a9b5;
+    --primary-pale:#f6cbd3;
+    --accent:#e67589;
+    --accent-light:#fde8ec;
+    --bg-light:#fff8f9;
+    --dark:#1a0a0e;
+    --text-main:#3d1a21;
+    --text-muted:#7a4a55;
+    --white:#FFFFFF;
+    --radius:24px;
+    --shadow-lg:0 20px 40px rgb(224 82 107 / 0.18);
+    --shadow-md:0 10px 30px rgb(224 82 107 / 0.13);
+    --shadow-sm:0 4px 6px -1px rgb(224 82 107 / 0.10);
+    --transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --veg:#3E8E4F;
     --nonveg:#A8392C;
     --egg:#C98A2C;
     --r-sm:6px;
-    --r-md:10px;
-    --r-lg:18px;
+    --r-md:12px;
+    --r-lg:20px;
     --ease:cubic-bezier(.22,1,.36,1);
   }
 
   html{ scroll-behavior:smooth; }
   body{
-    background:
-      radial-gradient(ellipse 900px 600px at 12% -10%, rgba(193,84,44,0.16), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 90% 10%, rgba(216,178,90,0.10), transparent 55%),
-      var(--bg);
-    color:var(--cream);
-    font-family:'Inter',sans-serif;
+    background: var(--bg-light);
+    color: var(--text-main);
+    font-family:'Plus Jakarta Sans',sans-serif;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  ::selection{ background:var(--gold); color:#14110D; }
+  ::selection{ background:var(--primary-pale); color:var(--primary-dark); }
 
-  /* scrollbar (webkit) */
-  ::-webkit-scrollbar{ width:9px; }
-  ::-webkit-scrollbar-track{ background:var(--bg); }
-  ::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:10px; }
+  ::-webkit-scrollbar{ width:8px; }
+  ::-webkit-scrollbar-track{ background:var(--primary-pale); }
+  ::-webkit-scrollbar-thumb{ background:var(--primary-mid); border-radius:10px; }
 
-  /* ───────────────────── ambient grain + spice motes ───────────────────── */
   .grain{
-    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.05; mix-blend-mode:overlay;
+    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.025; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+
   .motes{ position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
   .mote{
     position:absolute; bottom:-10px; border-radius:50%;
-    background:radial-gradient(circle, var(--gold-soft), transparent 70%);
+    background:radial-gradient(circle, var(--primary-light), transparent 70%);
     opacity:0; animation:floatUp linear infinite;
   }
   @keyframes floatUp{
     0%{ transform:translateY(0) translateX(0); opacity:0; }
-    8%{ opacity:.55; }
-    92%{ opacity:.3; }
+    8%{ opacity:.35; }
+    92%{ opacity:.18; }
     100%{ transform:translateY(-110vh) translateX(var(--drift,30px)); opacity:0; }
   }
 
-  /* ───────────────────── reveal utility ───────────────────── */
   .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s var(--ease), transform .7s var(--ease); transition-delay:calc(var(--i,0) * 70ms); }
   .reveal.visible{ opacity:1; transform:translateY(0); }
 
-  /* ───────────────────── badge / seal ───────────────────── */
+  /* SEAL */
   .seal{ width:84px; height:84px; }
   .seal .ring{ animation:spin 22s linear infinite; transform-origin:50% 50%; }
   .seal .ring2{ animation:spin 30s linear infinite reverse; transform-origin:50% 50%; }
   @keyframes spin{ to{ transform:rotate(360deg); } }
-  .seal .leaf,.seal .swirl{ stroke:var(--gold-soft); fill:none; stroke-width:1.4; stroke-linecap:round; }
 
-  /* ───────────────────── header / hero ───────────────────── */
+  /* HERO */
   header.hero{
     position:relative; z-index:2;
     padding:clamp(56px,10vw,90px) 6vw 64px;
     text-align:center;
-    border-bottom:1px solid var(--line);
+    background: linear-gradient(180deg, var(--accent-light) 0%, var(--bg-light) 100%);
+    border-bottom:2px solid var(--primary-pale);
   }
+
   .eyebrow{
-    font-size:.7rem; letter-spacing:.32em; text-transform:uppercase; color:var(--gold);
+    font-size:.7rem; letter-spacing:.32em; text-transform:uppercase; color:var(--primary);
     display:inline-flex; align-items:center; gap:10px; margin-top:22px;
   }
-  .eyebrow::before,.eyebrow::after{ content:''; width:22px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
-  .eyebrow::after{ background:linear-gradient(90deg,var(--gold),transparent); }
+  .eyebrow::before,.eyebrow::after{ content:''; width:22px; height:1px; background:linear-gradient(90deg,transparent,var(--primary)); }
+  .eyebrow::after{ background:linear-gradient(90deg,var(--primary),transparent); }
 
   .wordmark{
     font-family:'Playfair Display',serif;
@@ -99,58 +100,58 @@
     letter-spacing:.01em;
     line-height:1;
     margin-top:18px;
-    color:var(--cream);
+    color: var(--dark);
   }
-  .wordmark .amp{ font-style:italic; font-weight:500; color:var(--gold); padding:0 .12em; }
+  .wordmark .amp{ font-style:italic; font-weight:500; color:var(--primary); padding:0 .12em; }
 
   .tagline{
-    font-size:.95rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);
+    font-size:.95rem; letter-spacing:.18em; text-transform:uppercase; color:var(--text-muted);
     margin-top:14px;
   }
 
   .hero-copy{
-    max-width:540px; margin:26px auto 0; color:var(--muted); font-size:.96rem; line-height:1.75;
+    max-width:540px; margin:26px auto 0; color:var(--text-muted); font-size:.96rem; line-height:1.75;
   }
-  .hero-copy strong{ color:var(--gold-soft); font-weight:600; }
+  .hero-copy strong{ color:var(--primary-dark); font-weight:700; }
 
   .hero-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:34px; }
 
   .btn{
     position:relative; overflow:hidden;
     display:inline-flex; align-items:center; gap:9px;
-    padding:13px 26px; border-radius:3px;
-    font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; font-weight:700;
-    text-decoration:none; border:1px solid transparent; cursor:pointer;
-    transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+    padding:13px 26px; border-radius:var(--radius);
+    font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; font-weight:700;
+    text-decoration:none; border:2px solid transparent; cursor:pointer;
+    transition:var(--transition);
   }
   .btn::after{
     content:''; position:absolute; top:0; left:-60%; width:40%; height:100%;
-    background:linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+    background:linear-gradient(120deg, transparent, rgba(255,255,255,.4), transparent);
     transform:skewX(-20deg); transition:left .6s ease;
   }
   .btn:hover::after{ left:140%; }
   .btn:hover{ transform:translateY(-3px); }
-  .btn-primary{ background:linear-gradient(135deg,var(--gold),var(--gold-soft)); color:#1A1308; box-shadow:0 10px 28px rgba(216,178,90,.18); }
-  .btn-primary:hover{ box-shadow:0 14px 34px rgba(216,178,90,.32); }
-  .btn-ghost{ border-color:var(--line-strong); color:var(--cream); background:rgba(255,255,255,.02); }
-  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold-soft); }
+  .btn-primary{ background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff; box-shadow:var(--shadow-md); }
+  .btn-primary:hover{ box-shadow:var(--shadow-lg); }
+  .btn-ghost{ border-color:var(--primary-mid); color:var(--primary-dark); background:var(--white); }
+  .btn-ghost:hover{ border-color:var(--primary); background:var(--accent-light); }
 
   .hero-strip{
     display:flex; gap:28px; flex-wrap:wrap; justify-content:center; margin-top:44px;
-    font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-dim);
+    font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted);
   }
   .hero-strip span{ display:flex; align-items:center; gap:7px; }
-  .hero-strip i{ width:5px; height:5px; border-radius:50%; background:var(--gold); display:inline-block; }
+  .hero-strip i{ width:6px; height:6px; border-radius:50%; background:var(--primary); display:inline-block; }
 
-  /* ───────────────────── sticky category nav ───────────────────── */
+  /* NAV */
   nav.tabs-wrap{
     position:sticky; top:0; z-index:30;
-    background:rgba(20,17,13,.78); backdrop-filter:blur(14px) saturate(140%);
-    border-bottom:1px solid var(--line);
+    background:rgba(255,248,249,.88); backdrop-filter:blur(16px) saturate(160%);
+    border-bottom:2px solid var(--primary-pale);
     transition:padding .35s var(--ease), box-shadow .35s var(--ease);
     padding:16px 0;
   }
-  nav.tabs-wrap.compact{ padding:9px 0; box-shadow:0 10px 30px rgba(0,0,0,.35); }
+  nav.tabs-wrap.compact{ padding:9px 0; box-shadow:var(--shadow-sm); }
   .tabs-track{
     position:relative;
     display:flex; gap:6px; overflow-x:auto; scrollbar-width:none;
@@ -158,21 +159,22 @@
   }
   .tabs-track::-webkit-scrollbar{ display:none; }
   .tab-indicator{
-    position:absolute; bottom:-1px; height:2px; background:linear-gradient(90deg,var(--gold),var(--rust));
+    position:absolute; bottom:-1px; height:2px;
+    background:linear-gradient(90deg,var(--primary),var(--accent));
     border-radius:2px; transition:left .4s var(--ease), width .4s var(--ease); z-index:1;
   }
   .tab-btn{
     position:relative; z-index:2;
     flex:0 0 auto; background:transparent; border:none; cursor:pointer;
-    color:var(--muted); font-family:'Inter',sans-serif; font-size:.76rem;
-    letter-spacing:.08em; text-transform:uppercase; font-weight:600;
-    padding:10px 16px; border-radius:20px; transition:color .3s,background .3s;
+    color:var(--text-muted); font-family:'Plus Jakarta Sans',sans-serif; font-size:.76rem;
+    letter-spacing:.06em; text-transform:uppercase; font-weight:700;
+    padding:10px 16px; border-radius:var(--radius); transition:color .3s,background .3s;
     white-space:nowrap;
   }
-  .tab-btn:hover{ color:var(--gold-soft); }
-  .tab-btn.active{ color:#1A1308; background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:700; }
+  .tab-btn:hover{ color:var(--primary); background:var(--accent-light); }
+  .tab-btn.active{ color:#fff; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); font-weight:700; box-shadow:var(--shadow-sm); }
 
-  /* ───────────────────── menu sections ───────────────────── */
+  /* MAIN */
   main{ max-width:980px; margin:0 auto; padding:60px 6vw 10px; position:relative; z-index:2; }
 
   .panel{ display:none; }
@@ -180,110 +182,120 @@
   @keyframes panelIn{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
 
   .panel-head{ text-align:center; margin-bottom:36px; }
-  .panel-head .label{ font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
-  .panel-head h2{ font-family:'Playfair Display',serif; font-weight:700; font-size:1.7rem; margin-top:8px; color:var(--cream); }
-  .panel-head p{ color:var(--muted); font-size:.85rem; margin-top:10px; max-width:480px; margin-inline:auto; }
+  .panel-head .label{ font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--primary); }
+  .panel-head h2{ font-family:'Playfair Display',serif; font-weight:700; font-size:1.8rem; margin-top:8px; color:var(--dark); }
+  .panel-head p{ color:var(--text-muted); font-size:.88rem; margin-top:10px; max-width:480px; margin-inline:auto; }
 
   .preorder-note{
     display:flex; align-items:center; gap:10px; justify-content:center;
-    margin:0 auto 30px; padding:10px 18px; max-width:fit-content;
-    border:1px dashed var(--line-strong); border-radius:30px; color:var(--muted); font-size:.78rem;
+    margin:0 auto 30px; padding:12px 22px; max-width:fit-content;
+    border:2px dashed var(--primary-mid); border-radius:var(--radius);
+    color:var(--text-muted); font-size:.8rem;
+    background:var(--accent-light);
   }
-  .preorder-note b{ color:var(--gold-soft); }
-  .pulse-dot{ width:7px; height:7px; border-radius:50%; background:var(--rust); flex:0 0 auto; animation:pulse 1.8s ease-in-out infinite; }
-  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(193,84,44,.55); } 50%{ box-shadow:0 0 0 6px rgba(193,84,44,0); } }
+  .preorder-note b{ color:var(--primary-dark); }
+  .pulse-dot{ width:7px; height:7px; border-radius:50%; background:var(--primary); flex:0 0 auto; animation:pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgb(224 82 107 / .55); } 50%{ box-shadow:0 0 0 6px rgb(224 82 107 / 0); } }
 
-  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:14px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:16px; }
 
   .dish{
-    position:relative; background:linear-gradient(160deg,var(--panel),var(--panel-2));
-    border:1px solid var(--line); border-radius:var(--r-md); padding:18px 18px 16px;
-    transition:transform .4s var(--ease), border-color .4s, box-shadow .4s;
+    position:relative;
+    background:var(--white);
+    border:2px solid var(--primary-pale);
+    border-radius:var(--r-lg);
+    padding:20px 20px 18px;
+    transition:var(--transition);
     overflow:hidden;
+    box-shadow:var(--shadow-sm);
   }
   .dish::before{
-    content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
-    background:linear-gradient(to bottom,var(--gold),var(--rust)); transform:scaleY(0); transform-origin:top;
+    content:''; position:absolute; left:0; top:0; bottom:0; width:4px;
+    background:linear-gradient(to bottom,var(--primary),var(--primary-dark));
+    transform:scaleY(0); transform-origin:top;
     transition:transform .45s var(--ease);
+    border-radius:0 0 0 var(--r-lg);
   }
-  .dish:hover{ transform:translateY(-5px); border-color:var(--line-strong); box-shadow:0 16px 34px rgba(0,0,0,.45),0 0 0 1px rgba(216,178,90,.06); }
+  .dish:hover{ transform:translateY(-6px); border-color:var(--primary-mid); box-shadow:var(--shadow-md); }
   .dish:hover::before{ transform:scaleY(1); }
 
-  .dish-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:6px; }
-  .dish-name{ font-family:'Playfair Display',serif; font-weight:700; font-size:1.02rem; color:var(--cream); line-height:1.3; }
-  .dish-desc{ font-size:.78rem; color:var(--muted); line-height:1.55; margin-bottom:14px; }
+  .dish-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:8px; }
+  .dish-name{ font-family:'Playfair Display',serif; font-weight:700; font-size:1.05rem; color:var(--dark); line-height:1.3; }
+  .dish-desc{ font-size:.8rem; color:var(--text-muted); line-height:1.6; margin-bottom:14px; }
 
-  .mark{ flex:0 0 auto; width:13px; height:13px; border:1.4px solid currentColor; border-radius:2px; display:flex; align-items:center; justify-content:center; margin-top:3px; }
+  .mark{ flex:0 0 auto; width:13px; height:13px; border:1.6px solid currentColor; border-radius:2px; display:flex; align-items:center; justify-content:center; margin-top:4px; }
   .mark::after{ content:''; width:6px; height:6px; border-radius:50%; background:currentColor; }
   .mark.veg{ color:var(--veg); }
   .mark.nonveg{ color:var(--nonveg); }
   .mark.egg{ color:var(--egg); }
 
-  .prices{ display:flex; flex-wrap:wrap; gap:6px; }
+  .prices{ display:flex; flex-wrap:wrap; gap:8px; }
   .chip{
-    border:1px solid var(--line); color:var(--gold-soft); font-size:.7rem; letter-spacing:.03em;
-    padding:5px 10px; border-radius:4px; background:rgba(216,178,90,.05); transition:border-color .3s,background .3s;
+    border:1.5px solid var(--primary-pale); color:var(--primary-dark); font-size:.7rem; letter-spacing:.03em; font-weight:600;
+    padding:6px 12px; border-radius:var(--radius); background:var(--accent-light);
+    transition:var(--transition);
   }
-  .dish:hover .chip{ border-color:var(--line-strong); background:rgba(216,178,90,.1); }
-  .price-solo{ font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--gold-soft); font-weight:700; }
+  .dish:hover .chip{ border-color:var(--primary-mid); background:var(--primary-pale); }
+  .price-solo{ font-family:'Playfair Display',serif; font-size:1.25rem; color:var(--primary-dark); font-weight:700; }
 
-  .seal-image{ filter:drop-shadow(0 2px 8px rgba(216,178,90,.3)); }
+  .seal-image{ filter:drop-shadow(0 2px 8px rgb(224 82 107 / .2)); }
 
   .chip-cta{
-    display:inline-flex; align-items:center; gap:6px;
-    border:1px solid var(--line-strong); color:var(--gold-soft); font-size:.7rem; letter-spacing:.04em;
-    padding:6px 11px; border-radius:4px; background:rgba(216,178,90,.07);
-    text-decoration:none; font-weight:600; transition:all .3s var(--ease);
+    display:inline-flex; align-items:center; gap:6px; margin-top:12px;
+    border:1.5px solid var(--primary-mid); color:var(--primary-dark); font-size:.72rem; letter-spacing:.04em;
+    padding:8px 14px; border-radius:var(--radius); background:var(--accent-light);
+    text-decoration:none; font-weight:700; transition:var(--transition);
   }
   .chip-cta svg{ width:11px; height:11px; transition:transform .3s var(--ease); }
-  .chip-cta:hover{ background:linear-gradient(135deg,var(--gold),var(--gold-soft)); color:#1A1308; border-color:transparent; }
+  .chip-cta:hover{ background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff; border-color:transparent; box-shadow:var(--shadow-sm); }
   .chip-cta:hover svg{ transform:translateX(3px); }
 
-  .dish-note{ font-size:.72rem; color:var(--muted-dim); margin-top:10px; line-height:1.5; }
+  .dish-note{ font-size:.72rem; color:var(--text-muted); margin-top:10px; line-height:1.5; }
 
   .preorder-flag{
     position:absolute; top:12px; right:12px; font-size:.6rem; letter-spacing:.1em; text-transform:uppercase;
-    color:var(--rust); border:1px solid rgba(193,84,44,.5); background:rgba(193,84,44,.1);
-    padding:3px 8px; border-radius:3px; font-weight:700; display:flex; align-items:center; gap:5px;
+    color:var(--primary-dark); border:1.5px solid var(--primary-mid); background:var(--accent-light);
+    padding:4px 10px; border-radius:var(--radius); font-weight:700; display:flex; align-items:center; gap:5px;
   }
   .preorder-flag .pulse-dot{ width:5px; height:5px; }
 
-  /* ───────────────────── why strip ───────────────────── */
+  /* WHY */
   .why{ margin-top:78px; }
   .why-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; margin-top:32px; }
   .why-card{
-    text-align:center; padding:26px 18px; border:1px solid var(--line); border-radius:var(--r-md);
-    background:linear-gradient(160deg,var(--panel),var(--panel-2));
-    transition:transform .4s var(--ease), border-color .4s;
+    text-align:center; padding:28px 20px;
+    border:2px solid var(--primary-pale); border-radius:var(--r-lg);
+    background:var(--white); box-shadow:var(--shadow-sm);
+    transition:var(--transition);
   }
-  .why-card:hover{ transform:translateY(-4px); border-color:var(--line-strong); }
-  .why-icon{ width:34px; height:34px; margin:0 auto 14px; stroke:var(--gold-soft); fill:none; stroke-width:1.4; }
-  .why-title{ font-family:'Playfair Display',serif; font-weight:700; font-size:.95rem; margin-bottom:8px; }
-  .why-text{ font-size:.78rem; color:var(--muted); line-height:1.6; }
+  .why-card:hover{ transform:translateY(-5px); border-color:var(--primary-mid); box-shadow:var(--shadow-md); }
+  .why-icon{ width:36px; height:36px; margin:0 auto 14px; stroke:var(--primary); fill:none; stroke-width:1.6; }
+  .why-title{ font-family:'Playfair Display',serif; font-weight:700; font-size:1rem; margin-bottom:8px; color:var(--dark); }
+  .why-text{ font-size:.8rem; color:var(--text-muted); line-height:1.65; }
 
-  /* ───────────────────── footer / order cta ───────────────────── */
+  /* FOOTER */
   footer{
-    margin-top:90px; border-top:1px solid var(--line);
-    background:linear-gradient(180deg, transparent, rgba(216,178,90,.04));
-    padding:56px 6vw 36px; text-align:center; position:relative; z-index:2;
+    margin-top:90px;
+    border-top:2px solid var(--primary-pale);
+    background: linear-gradient(180deg, var(--bg-light) 0%, var(--accent-light) 100%);
+    padding:60px 6vw 40px; text-align:center; position:relative; z-index:2;
   }
-  .footer-title{ font-family:'Playfair Display',serif; font-weight:700; font-size:1.6rem; }
-  .footer-sub{ color:var(--muted); font-size:.85rem; margin-top:10px; }
+  .footer-title{ font-family:'Playfair Display',serif; font-weight:700; font-size:1.8rem; color:var(--dark); }
+  .footer-sub{ color:var(--text-muted); font-size:.88rem; margin-top:10px; }
   .footer-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px; }
 
-  .btn-wa{ background:#1FAE52; color:#fff; box-shadow:0 10px 26px rgba(31,174,82,.25); }
+  .btn-wa{ background:#1FAE52; color:#fff; box-shadow:0 10px 26px rgba(31,174,82,.25); border-color:transparent; }
   .btn-wa:hover{ box-shadow:0 14px 30px rgba(31,174,82,.4); }
 
   .contact-row{
-    margin-top:34px; padding-top:26px; border-top:1px solid var(--line);
+    margin-top:34px; padding-top:26px; border-top:1.5px solid var(--primary-pale);
     display:flex; gap:26px; justify-content:center; flex-wrap:wrap;
-    font-size:.82rem; color:var(--muted);
+    font-size:.84rem; color:var(--text-muted);
   }
-  .contact-row a{ color:var(--gold-soft); text-decoration:none; }
+  .contact-row a{ color:var(--primary-dark); text-decoration:none; font-weight:600; }
   .contact-row a:hover{ text-decoration:underline; }
-  .copyright{ margin-top:22px; font-size:.74rem; color:var(--muted-dim); letter-spacing:.04em; }
+  .copyright{ margin-top:22px; font-size:.74rem; color:var(--text-muted); letter-spacing:.04em; }
 
-  /* ───────────────────── responsive ───────────────────── */
   @media (max-width:640px){
     .grid{ grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); }
     .why-grid{ grid-template-columns:repeat(2,1fr); }
@@ -300,12 +312,11 @@
 <div class="grain"></div>
 <div class="motes" id="motes"></div>
 
-<!-- ───────────────────── HERO ───────────────────── -->
 <header class="hero">
   <svg class="seal reveal" viewBox="0 0 100 100" aria-hidden="true">
-    <circle class="ring" cx="50" cy="50" r="46" fill="none" stroke="var(--line-strong)" stroke-width="1" stroke-dasharray="2 6"/>
-    <circle class="ring2" cx="50" cy="50" r="38" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="1 5"/>
-    <image class="seal-image" href="./icon-removebg-preview.png" x="18" y="18" width="64" height="64"></image>
+    <circle class="ring" cx="50" cy="50" r="46" fill="none" stroke="var(--primary-pale)" stroke-width="1.5" stroke-dasharray="2 6"/>
+    <circle class="ring2" cx="50" cy="50" r="38" fill="none" stroke="var(--primary-mid)" stroke-width="1" stroke-dasharray="1 5"/>
+    <image class="seal-image" href="./color1_icon_light_background-Photoroom.png" x="10" y="10" width="80" height="80"></image>
   </svg>
 
   <p class="eyebrow reveal" style="--i:1">Hyderabad · Telangana Cloud Kitchen</p>
@@ -327,7 +338,6 @@
   </div>
 </header>
 
-<!-- ───────────────────── STICKY TABS ───────────────────── -->
 <nav class="tabs-wrap" id="tabsWrap">
   <div class="tabs-track" id="tabsTrack">
     <span class="tab-indicator" id="tabIndicator"></span>
@@ -363,7 +373,6 @@
         </div>
       </article>
       <article class="dish reveal" style="--i:1">
-        <!-- <span class="preorder-flag"><span class="pulse-dot"></span>Pre-Order</span> -->
         <div class="dish-top">
           <div class="dish-name">Mutton Biryani</div>
           <span class="mark nonveg" title="Non-Veg"></span>
@@ -385,12 +394,12 @@
       <p>Wok-fresh, plated quick — perfect on the side or on their own.</p>
     </div>
     <div class="grid">
-      <article class="dish reveal" style="--i:0"><div class="dish-top"><div class="dish-name">Veg Fried Rice</div><span class="mark veg" title="Veg"></span></div><div class="prices"><span class="price-solo">₹180</span></div></article>
-      <article class="dish reveal" style="--i:1"><div class="dish-top"><div class="dish-name">Veg Noodles</div><span class="mark veg" title="Veg"></span></div><div class="prices"><span class="price-solo">₹180</span></div></article>
-      <article class="dish reveal" style="--i:2"><div class="dish-top"><div class="dish-name">Egg Fried Rice</div><span class="mark egg" title="Egg"></span></div><div class="prices"><span class="price-solo">₹200</span></div></article>
-      <article class="dish reveal" style="--i:3"><div class="dish-top"><div class="dish-name">Egg Noodles</div><span class="mark egg" title="Egg"></span></div><div class="prices"><span class="price-solo">₹200</span></div></article>
-      <article class="dish reveal" style="--i:4"><div class="dish-top"><div class="dish-name">Chicken Fried Rice</div><span class="mark nonveg" title="Non-Veg"></span></div><div class="prices"><span class="price-solo">₹250</span></div></article>
-      <article class="dish reveal" style="--i:5"><div class="dish-top"><div class="dish-name">Chicken Noodles</div><span class="mark nonveg" title="Non-Veg"></span></div><div class="prices"><span class="price-solo">₹260</span></div></article>
+      <article class="dish reveal" style="--i:0"><div class="dish-top"><div class="dish-name">Veg Fried Rice</div><span class="mark veg"></span></div><div class="prices"><span class="price-solo">₹180</span></div></article>
+      <article class="dish reveal" style="--i:1"><div class="dish-top"><div class="dish-name">Veg Noodles</div><span class="mark veg"></span></div><div class="prices"><span class="price-solo">₹180</span></div></article>
+      <article class="dish reveal" style="--i:2"><div class="dish-top"><div class="dish-name">Egg Fried Rice</div><span class="mark egg"></span></div><div class="prices"><span class="price-solo">₹200</span></div></article>
+      <article class="dish reveal" style="--i:3"><div class="dish-top"><div class="dish-name">Egg Noodles</div><span class="mark egg"></span></div><div class="prices"><span class="price-solo">₹200</span></div></article>
+      <article class="dish reveal" style="--i:4"><div class="dish-top"><div class="dish-name">Chicken Fried Rice</div><span class="mark nonveg"></span></div><div class="prices"><span class="price-solo">₹250</span></div></article>
+      <article class="dish reveal" style="--i:5"><div class="dish-top"><div class="dish-name">Chicken Noodles</div><span class="mark nonveg"></span></div><div class="prices"><span class="price-solo">₹260</span></div></article>
     </div>
   </section>
 
@@ -403,23 +412,23 @@
     </div>
     <div class="grid">
       <article class="dish reveal" style="--i:0">
-        <div class="dish-top"><div class="dish-name">Bagara Rice / Chicken Curry</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Bagara Rice / Chicken Curry</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Bagara rice paired with rich chicken curry.</p>
         <div class="prices"><span class="chip">Single ₹170</span><span class="chip">Full ₹280</span></div>
       </article>
       <article class="dish reveal" style="--i:1">
-        <div class="dish-top"><div class="dish-name">Bagara Rice / Mutton Curry</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Bagara Rice / Mutton Curry</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Bagara rice paired with slow-cooked mutton curry.</p>
         <div class="prices"><span class="chip">Single ₹280</span><span class="chip">Full ₹425</span></div>
       </article>
       <article class="dish reveal" style="--i:2">
-        <div class="dish-top"><div class="dish-name">1Kg Bagara / 1Kg Chicken Combo</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">1Kg Bagara / 1Kg Chicken Combo</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Full combo meal — perfect for gatherings.</p>
         <div class="prices"><span class="price-solo">₹1250</span></div>
       </article>
       <article class="dish reveal" style="--i:3">
         <span class="preorder-flag"><span class="pulse-dot"></span>Pre-Order</span>
-        <div class="dish-top"><div class="dish-name">1Kg Bagara / 1Kg Mutton Combo</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">1Kg Bagara / 1Kg Mutton Combo</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Full combo meal with premium mutton.</p>
         <div class="prices"><span class="price-solo">₹2250</span></div>
       </article>
@@ -434,19 +443,19 @@
       <p>Bold, wok-tossed starters — crisp outside, juicy within.</p>
     </div>
     <div class="grid">
-      <article class="dish reveal" style="--i:0"><div class="dish-top"><div class="dish-name">Egg 65</div><span class="mark egg" title="Egg"></span></div><div class="prices"><span class="price-solo">₹225</span></div></article>
-      <article class="dish reveal" style="--i:1"><div class="dish-top"><div class="dish-name">Egg Manchuria</div><span class="mark egg" title="Egg"></span></div><div class="prices"><span class="price-solo">₹225</span></div></article>
-      <article class="dish reveal" style="--i:2"><div class="dish-top"><div class="dish-name">Chilli Egg</div><span class="mark egg" title="Egg"></span></div><div class="prices"><span class="price-solo">₹215</span></div></article>
-      <article class="dish reveal" style="--i:3"><div class="dish-top"><div class="dish-name">Gobi 65</div><span class="mark veg" title="Veg"></span></div><div class="prices"><span class="price-solo">₹195</span></div></article>
-      <article class="dish reveal" style="--i:4"><div class="dish-top"><div class="dish-name">Chilli Paneer</div><span class="mark veg" title="Veg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
-      <article class="dish reveal" style="--i:5"><div class="dish-top"><div class="dish-name">Chilli Mushroom</div><span class="mark veg" title="Veg"></span></div><div class="prices"><span class="price-solo">₹250</span></div></article>
-      <article class="dish reveal" style="--i:6"><div class="dish-top"><div class="dish-name">Crispy Corn</div><span class="mark veg" title="Veg"></span></div><div class="prices"><span class="price-solo">₹200</span></div></article>
-      <article class="dish reveal" style="--i:7"><div class="dish-top"><div class="dish-name">Chicken 65</div><span class="mark nonveg" title="Non-Veg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
-      <article class="dish reveal" style="--i:8"><div class="dish-top"><div class="dish-name">Chilli Chicken</div><span class="mark nonveg" title="Non-Veg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
-      <article class="dish reveal" style="--i:9"><div class="dish-top"><div class="dish-name">Chicken Majestic</div><span class="mark nonveg" title="Non-Veg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
-      <article class="dish reveal" style="--i:10"><div class="dish-top"><div class="dish-name">Chicken Lollipops</div><span class="mark nonveg" title="Non-Veg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
-      <article class="dish reveal" style="--i:11"><div class="dish-top"><div class="dish-name">Crispy Chicken</div><span class="mark nonveg" title="Non-Veg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
-      <article class="dish reveal" style="--i:12"><div class="dish-top"><div class="dish-name">Chicken Triple Fry</div><span class="mark nonveg" title="Non-Veg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
+      <article class="dish reveal" style="--i:0"><div class="dish-top"><div class="dish-name">Egg 65</div><span class="mark egg"></span></div><div class="prices"><span class="price-solo">₹225</span></div></article>
+      <article class="dish reveal" style="--i:1"><div class="dish-top"><div class="dish-name">Egg Manchuria</div><span class="mark egg"></span></div><div class="prices"><span class="price-solo">₹225</span></div></article>
+      <article class="dish reveal" style="--i:2"><div class="dish-top"><div class="dish-name">Chilli Egg</div><span class="mark egg"></span></div><div class="prices"><span class="price-solo">₹215</span></div></article>
+      <article class="dish reveal" style="--i:3"><div class="dish-top"><div class="dish-name">Gobi 65</div><span class="mark veg"></span></div><div class="prices"><span class="price-solo">₹195</span></div></article>
+      <article class="dish reveal" style="--i:4"><div class="dish-top"><div class="dish-name">Chilli Paneer</div><span class="mark veg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
+      <article class="dish reveal" style="--i:5"><div class="dish-top"><div class="dish-name">Chilli Mushroom</div><span class="mark veg"></span></div><div class="prices"><span class="price-solo">₹250</span></div></article>
+      <article class="dish reveal" style="--i:6"><div class="dish-top"><div class="dish-name">Crispy Corn</div><span class="mark veg"></span></div><div class="prices"><span class="price-solo">₹200</span></div></article>
+      <article class="dish reveal" style="--i:7"><div class="dish-top"><div class="dish-name">Chicken 65</div><span class="mark nonveg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
+      <article class="dish reveal" style="--i:8"><div class="dish-top"><div class="dish-name">Chilli Chicken</div><span class="mark nonveg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
+      <article class="dish reveal" style="--i:9"><div class="dish-top"><div class="dish-name">Chicken Majestic</div><span class="mark nonveg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
+      <article class="dish reveal" style="--i:10"><div class="dish-top"><div class="dish-name">Chicken Lollipops</div><span class="mark nonveg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
+      <article class="dish reveal" style="--i:11"><div class="dish-top"><div class="dish-name">Crispy Chicken</div><span class="mark nonveg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
+      <article class="dish reveal" style="--i:12"><div class="dish-top"><div class="dish-name">Chicken Triple Fry</div><span class="mark nonveg"></span></div><div class="prices"><span class="price-solo">₹280</span></div></article>
     </div>
   </section>
 
@@ -461,37 +470,37 @@
     <div class="grid">
       <article class="dish reveal" style="--i:0">
         <span class="preorder-flag"><span class="pulse-dot"></span>Pre-Order</span>
-        <div class="dish-top"><div class="dish-name">Chicken Ghee Roast</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Chicken Ghee Roast</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Rich ghee-roasted chicken with coastal Telangana masalas.</p>
         <div class="prices"><span class="chip">Regular ₹350</span><span class="chip">1Kg ₹900</span></div>
       </article>
       <article class="dish reveal" style="--i:1">
         <span class="preorder-flag"><span class="pulse-dot"></span>Pre-Order</span>
-        <div class="dish-top"><div class="dish-name">Mutton Ghee Roast</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Mutton Ghee Roast</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Slow-cooked mutton finished in clarified ghee.</p>
         <div class="prices"><span class="chip">Regular ₹465</span><span class="chip">1Kg ₹1850</span></div>
       </article>
       <article class="dish reveal" style="--i:2">
         <span class="preorder-flag"><span class="pulse-dot"></span>Pre-Order</span>
-        <div class="dish-top"><div class="dish-name">Dosakaya Mutton Curry</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Dosakaya Mutton Curry</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Mutton cooked with yellow cucumber — a Telangana heirloom recipe.</p>
         <div class="prices"><span class="chip">Regular ₹385</span><span class="chip">1Kg ₹1540</span></div>
       </article>
       <article class="dish reveal" style="--i:3">
         <span class="preorder-flag"><span class="pulse-dot"></span>Pre-Order</span>
-        <div class="dish-top"><div class="dish-name">Miryala Chicken Fry</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Miryala Chicken Fry</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Pepper-forward dry chicken fry, bold and satisfying.</p>
         <div class="prices"><span class="chip">Regular ₹300</span><span class="chip">1Kg ₹850</span></div>
       </article>
       <article class="dish reveal" style="--i:4">
         <span class="preorder-flag"><span class="pulse-dot"></span>Pre-Order</span>
-        <div class="dish-top"><div class="dish-name">Miryala Mutton Fry</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Miryala Mutton Fry</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Spiced mutton fry with freshly ground pepper and whole spices.</p>
         <div class="prices"><span class="chip">Regular ₹400</span><span class="chip">1Kg ₹1600</span></div>
       </article>
       <article class="dish reveal" style="--i:5">
         <span class="preorder-flag"><span class="pulse-dot"></span>Pre-Order</span>
-        <div class="dish-top"><div class="dish-name">Chamgadda Mutton Curry</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Chamgadda Mutton Curry</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Mutton simmered with taro root — a rare rustic classic.</p>
         <div class="prices"><span class="chip">Regular ₹385</span><span class="chip">1Kg ₹1540</span></div>
       </article>
@@ -507,18 +516,18 @@
     </div>
     <div class="grid">
       <article class="dish reveal" style="--i:0">
-        <div class="dish-top"><div class="dish-name">Customised Veg Meal</div><span class="mark veg" title="Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Customised Veg Meal</div><span class="mark veg"></span></div>
         <p class="dish-desc">Build your own thali — choose your rice or roti, dal or curry, and sides. Perfect for individual lunch or dinner.</p>
         <a class="chip-cta" href="https://wa.me/918374443339?text=Hi!%20I%27d%20like%20to%20customise%20a%20Veg%20Meal.">
-          Customise on WhatsApp <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Customise on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <p class="dish-note">Price depends on items chosen.</p>
       </article>
       <article class="dish reveal" style="--i:1">
-        <div class="dish-top"><div class="dish-name">Customised Non-Veg Meal</div><span class="mark nonveg" title="Non-Veg"></span></div>
+        <div class="dish-top"><div class="dish-name">Customised Non-Veg Meal</div><span class="mark nonveg"></span></div>
         <p class="dish-desc">Pick your protein — chicken, mutton or egg — paired with your choice of curry, rice and sides.</p>
         <a class="chip-cta" href="https://wa.me/918374443339?text=Hi!%20I%27d%20like%20to%20customise%20a%20Non-Veg%20Meal.">
-          Customise on WhatsApp <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Customise on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <p class="dish-note">Price depends on items chosen.</p>
       </article>
@@ -534,29 +543,24 @@
     </div>
     <div class="grid">
       <article class="dish reveal" style="--i:0">
-        <div class="dish-top"><div class="dish-name">Subscription Meal Box</div><span class="mark veg" title="Veg &amp; Non-Veg available"></span></div>
+        <div class="dish-top"><div class="dish-name">Subscription Meal Box</div><span class="mark veg"></span></div>
         <p class="dish-desc">Weekly or monthly home-style meal plans, veg or non-veg, with rotating menus so every day feels different.</p>
         <a class="chip-cta" href="https://wa.me/918374443339?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20the%20Subscription%20Meal%20Box.">
-          Get a Plan on WhatsApp <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Get a Plan on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <p class="dish-note">Weekly &amp; monthly plans available.</p>
       </article>
       <article class="dish reveal" style="--i:1">
-        <div class="dish-top"><div class="dish-name">Protein Box</div><span class="mark veg" title="Veg / Egg options"></span></div>
+        <div class="dish-top"><div class="dish-name">Protein Box</div><span class="mark veg"></span></div>
         <p class="dish-desc">High-protein, clean-eating box with eggs, grilled paneer or chicken, sprouts and millets — built for fitness-conscious eating.</p>
-         <div class="prices"><span class="price-solo">₹225</span></div>
+        <div class="prices"><span class="price-solo">₹225</span></div>
         <a class="chip-cta" href="https://wa.me/918374443339?text=Hi!%20I%27d%20like%20to%20order%20a%20Protein%20Box.">
-          Order on WhatsApp <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Order on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <p class="dish-note">Customisable to your macros.</p>
       </article>
-      <!-- <article class="dish reveal" style="--i:2">
-        <div class="dish-top"><div class="dish-name">Salad &amp; Fruit Box</div><span class="mark veg" title="Veg"></span></div>
-        <p class="dish-desc">Microgreens, soaked dry fruits, fresh fruits, veggies and egg — a nutrient-packed start to the day.</p>
-        <div class="prices"><span class="price-solo">₹199</span></div>
-      </article> -->
-      <article class="dish reveal" style="--i:3">
-        <div class="dish-top"><div class="dish-name">Salad Box</div><span class="mark veg" title="Veg"></span></div>
+      <article class="dish reveal" style="--i:2">
+        <div class="dish-top"><div class="dish-name">Salad Box</div><span class="mark veg"></span></div>
         <p class="dish-desc">Lettuce, cucumber, sprouts, carrots and dry fruits — light, crisp and refreshing.</p>
         <div class="prices"><span class="price-solo">₹179</span></div>
       </article>
@@ -595,13 +599,10 @@
 
 </main>
 
-<!-- ───────────────────── FOOTER ───────────────────── -->
 <footer>
   <h2 class="footer-title reveal">Ready to Order?</h2>
   <p class="footer-sub reveal" style="--i:1">Free delivery above ₹2000 · Bulk orders welcome · Delivery in select areas of Hyderabad</p>
- 
- <  div class=".
- .></div> <div class="footer-ctas reveal" style="--i:2">
+  <div class="footer-ctas reveal" style="--i:2">
     <a href="https://wa.me/918374443339" class="btn btn-wa">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-1 1.2-.1.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.1-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"/><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.1 1.5 5.9L.1 23.7a.5.5 0 0 0 .6.6l5.9-1.5A12 12 0 0 0 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0Zm0 22c-1.9 0-3.7-.5-5.2-1.4l-.4-.2-3.9 1 1-3.8-.2-.4A10 10 0 0 1 2 12C2 6.5 6.5 2 12 2s10 4.5 10 10-4.5 10-10 10Z"/></svg>
       WhatsApp +91 83744 43339
@@ -613,7 +614,6 @@
       </svg>
       View on Map
     </a>
-
   </div>
   <div class="contact-row reveal" style="--i:3">
     <span>📞 <a href="tel:+918374443339">+91 83744 43339</a></span>
@@ -623,7 +623,6 @@
 </footer>
 
 <script>
-  // ── scroll reveal ──
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -639,7 +638,6 @@
     });
   }
 
-  // ── tabs ──
   const track = document.getElementById('tabsTrack');
   const indicator = document.getElementById('tabIndicator');
   const tabs = document.querySelectorAll('.tab-btn');
@@ -654,7 +652,6 @@
       tabs.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       moveIndicator(btn);
-
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
       const target = document.getElementById('panel-' + btn.dataset.tab);
       target.classList.add('active');
@@ -666,17 +663,15 @@
   window.addEventListener('load', () => moveIndicator(document.querySelector('.tab-btn.active')));
   window.addEventListener('resize', () => moveIndicator(document.querySelector('.tab-btn.active')));
 
-  // ── sticky nav compact on scroll ──
   const tabsWrap = document.getElementById('tabsWrap');
   window.addEventListener('scroll', () => {
     tabsWrap.classList.toggle('compact', window.scrollY > 220);
   }, { passive:true });
 
-  // ── ambient motes ──
   (function(){
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const container = document.getElementById('motes');
-    for (let i=0; i<22; i++){
+    for (let i=0; i<18; i++){
       const m = document.createElement('div');
       m.className = 'mote';
       const size = Math.random()*4 + 2;
